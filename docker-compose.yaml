@@ -1,0 +1,81 @@
+version: '3.6'
+
+volumes:
+  postgres_data:
+
+services:
+  api1:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: npm run start:dev
+    environment:
+      DB_HOST: database
+      DB_PORT: 5432
+    depends_on:
+      - database
+    ports:
+      - 3010:3010
+  
+  api2:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: npm run start:dev
+    environment:
+      DB_HOST: database
+      DB_PORT: 5432
+    depends_on:
+      - database
+    ports:
+      - 3015:3015
+
+  api3:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: npm run start:dev
+    environment:
+      DB_HOST: database
+      DB_PORT: 5432
+    depends_on:
+      - database
+    ports:
+      - 3020:3020
+
+  api4:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: npm run start:dev
+    environment:
+      DB_HOST: database
+      DB_PORT: 5432
+    depends_on:
+      - database
+    ports:
+      - 3025:3025
+
+  api5:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: npm run start:dev
+    environment:
+      DB_HOST: database
+      DB_PORT: 5432
+    depends_on:
+      - database
+    ports:
+      - 3030:3030
+
+  database:
+    image: postgres:11.6-alpine
+    environment:
+      POSTGRES_DB: balanceDb
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 1234
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - 6432:5432
